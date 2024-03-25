@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import os
 import datetime
 import numpy as np
-import scipy
 
 # 921 stocks in total
 indonesian_stock_tickers = (
@@ -599,19 +598,22 @@ test_ticker1 = 'AALI.JK'
 test_ticker2 = 'ABDA.JK'
 
 
+for ticker in indonesian_stock_tickers:
+    print(f'storage/{ticker}.csv')
+
 # test
-df1 = pd.read_csv(f'./storage/{test_ticker1}.csv')
-df2 = pd.read_csv(f'./storage/{test_ticker2}.csv')
-df1 = df1[['Date','Adj Close 1D Change']]
-df2 = df2[['Date','Adj Close 1D Change']]
-merged = pd.merge(df1,df2,on='Date',how='inner', suffixes=(' df1',' df2'))
-merged = merged.dropna()
-merged = merged[(merged != 0).all(axis=1)]
-merged.to_csv('./test.csv', index=False)
-correlation_coff = merged['Adj Close 1D Change df1'].corr(method='spearman',other=merged['Adj Close 1D Change df2'])
-print(correlation_coff)
-correlation_coff = merged['Adj Close 1D Change df2'].corr(method='spearman',other=merged['Adj Close 1D Change df1'])
-print(correlation_coff)
+# df1 = pd.read_csv(f'./storage/{test_ticker1}.csv')
+# df2 = pd.read_csv(f'./storage/{test_ticker2}.csv')
+# df1 = df1[['Date','Adj Close 1D Change']]
+# df2 = df2[['Date','Adj Close 1D Change']]
+# merged = pd.merge(df1,df2,on='Date',how='inner', suffixes=(' df1',' df2'))
+# merged = merged.dropna()
+# merged = merged[(merged != 0).all(axis=1)]
+# merged.to_csv('./test.csv', index=False)
+# correlation_coff = merged['Adj Close 1D Change df1'].corr(method='spearman',other=merged['Adj Close 1D Change df2'])
+# print(correlation_coff)
+# correlation_coff = merged['Adj Close 1D Change df2'].corr(method='spearman',other=merged['Adj Close 1D Change df1'])
+# print(correlation_coff)
 
 # for ticker in indonesian_stock_tickers:
 #     data = yf.download(ticker,period='max')
